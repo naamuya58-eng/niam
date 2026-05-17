@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="UTF-8">
+<title>Niam Ganteng Store</title>
+<style>
+    body {
+        margin: 0;
+        font-family: Arial;
+        background: #111;
+        color: white;
+        text-align: center;
+    }
+
+    .intro {
+        height: 100vh;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+        background: linear-gradient(45deg, #333, #666);
+    }
+
+    button {
+        padding: 10px 20px;
+        border: none;
+        background: black;
+        color: white;
+        cursor: pointer;
+        border-radius: 8px;
+        font-size: 16px;
+        margin: 8px;
+    }
+
+    .store {
+        display: none;
+        padding: 20px;
+    }
+
+    .header {
+        font-size: 26px;
+        margin-bottom: 20px;
+        color: #00ffcc;
+    }
+
+    .grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 12px;
+    }
+
+    .card {
+        background: #222;
+        padding: 15px;
+        border-radius: 10px;
+    }
+
+    .price {
+        color: gold;
+        margin-top: 5px;
+    }
+
+    .popup {
+        display: none;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.85);
+        justify-content: center;
+        align-items: center;
+    }
+
+    .box {
+        background: #222;
+        padding: 20px;
+        border-radius: 10px;
+        width: 300px;
+    }
+
+    input {
+        padding: 8px;
+        width: 80%;
+        margin-top: 10px;
+        border-radius: 5px;
+        border: none;
+    }
+</style>
+</head>
+<body>
+
+<!-- INTRO -->
+<div class="intro" id="intro">
+    <h1>BUATAN NIAM GANTENG</h1>
+    <p>Tekan MASUK untuk ke toko</p>
+    <button onclick="masuk()">MASUK</button>
+</div>
+
+<!-- STORE -->
+<div class="store" id="store">
+    <div class="header">NIAM GANTENG STORE</div>
+
+    <div class="grid">
+        <div class="card">Game 1 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 2 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 3 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 4 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 5 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 6 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 7 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 8 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 9 <div class="price">Rp 10.000.000</div></div>
+        <div class="card">Game 10 <div class="price">Rp 10.000.000</div></div>
+    </div>
+
+    <button onclick="bukaGame()">KELUAR</button>
+    
+</div>
+
+<!-- GAME POPUP -->
+<div class="popup" id="popup">
+    <div class="box">
+        <h3>Soal Matematika 120 - 53 = ?</h3>
+        <input type="number" id="tebak" placeholder="Masukkan angka">
+        <br>
+        <button onclick="cek()">jawab</button>
+        <p id="hasil"></p>
+    </div>
+</div>
+
+<!-- GOMBALAN -->
+<div class="popup" id="gombal">
+    <div class="box">
+        <h3>🎉 Selamat!</h3>
+        <p>Kalau hari ini berat, semoga game ini bikin sedikit ringan</p>
+        <button onclick="reset()">OK</button>
+    </div>
+</div>
+
+<script>
+function masuk() {
+    document.getElementById("intro").style.display = "none";
+    document.getElementById("store").style.display = "block";
+}
+
+function bukaGame() {
+    document.getElementById("popup").style.display = "flex";
+}
+
+function cek() {
+    let jawaban = document.getElementById("tebak").value;
+
+    if (jawaban == 67) {
+        document.getElementById("popup").style.display = "none";
+        document.getElementById("gombal").style.display = "flex";
+
+        // langsung main lagu
+        document.getElementById("musik").play();
+    } else {
+        document.getElementById("hasil").innerText = "Salah 😆 coba lagi!";
+    }
+}
+
+function reset() {
+    document.getElementById("gombal").style.display = "none";
+    document.getElementById("store").style.display = "none";
+    document.getElementById("intro").style.display = "flex";
+    document.getElementById("tebak").value = "";
+    document.getElementById("hasil").innerText = "";
+}
+</script>
+</body>
+<audio id="musik" src="sixseven.mp3"></audio>
+<button onclick="document.getElementById('musik').play()">TEST SOUND</button>
+</body>
+</html>
